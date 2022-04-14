@@ -1,0 +1,49 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}EvenementLocal index{% endblock %}
+
+{% block body %}
+    <h1>EvenementLocal index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>IdEve</th>
+            <th>Nom</th>
+            <th>Date</th>
+            <th>Nbparti</th>
+            <th>Tarif</th>
+            <th>Lieu</th>
+            <th>Description</th>
+            <th>Nbplace</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for evenement_local in evenement_locals %}
+            <tr>
+                <td>{{ evenement_local.id }}</td>
+                <td>{{ evenement_local.idEve }}</td>
+                <td>{{ evenement_local.nom }}</td>
+                <td>{{ evenement_local.date ? evenement_local.date|date('Y-m-d') : '' }}</td>
+                <td>{{ evenement_local.nbparti }}</td>
+                <td>{{ evenement_local.tarif }}</td>
+                <td>{{ evenement_local.lieu }}</td>
+                <td>{{ evenement_local.description }}</td>
+                <td>{{ evenement_local.nbplace }}</td>
+                <td>
+                    <a href="{{ path('evenement_local_show', {'id': evenement_local.id}) }}">show</a>
+                    <a href="{{ path('evenement_local_edit', {'id': evenement_local.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('evenement_local_new') }}">Create new</a>
+{% endblock %}

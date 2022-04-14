@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EvenementLocal{% endblock %}
+
+{% block body %}
+    <h1>EvenementLocal</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ evenement_local.id }}</td>
+            </tr>
+            <tr>
+                <th>IdEve</th>
+                <td>{{ evenement_local.idEve }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ evenement_local.nom }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ evenement_local.date ? evenement_local.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nbparti</th>
+                <td>{{ evenement_local.nbparti }}</td>
+            </tr>
+            <tr>
+                <th>Tarif</th>
+                <td>{{ evenement_local.tarif }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ evenement_local.lieu }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ evenement_local.description }}</td>
+            </tr>
+            <tr>
+                <th>Nbplace</th>
+                <td>{{ evenement_local.nbplace }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('evenement_local_index') }}">back to list</a>
+
+    <a href="{{ path('evenement_local_edit', {'id': evenement_local.id}) }}">edit</a>
+
+    {{ include('evenement_local/_delete_form.html.twig') }}
+{% endblock %}

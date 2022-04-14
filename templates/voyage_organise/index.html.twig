@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VoyageOrganise index{% endblock %}
+
+{% block body %}
+    <h1>VoyageOrganise index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idvoy</th>
+                <th>Pays</th>
+                <th>Date</th>
+                <th>Nbjours</th>
+                <th>Programme</th>
+                <th>Tarif</th>
+                <th>Nbanimal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voyage_organise in voyage_organises %}
+            <tr>
+                <td>{{ voyage_organise.id }}</td>
+                <td>{{ voyage_organise.idvoy }}</td>
+                <td>{{ voyage_organise.pays }}</td>
+                <td>{{ voyage_organise.date ? voyage_organise.date|date('Y-m-d') : '' }}</td>
+                <td>{{ voyage_organise.nbjours }}</td>
+                <td>{{ voyage_organise.programme }}</td>
+                <td>{{ voyage_organise.tarif }}</td>
+                <td>{{ voyage_organise.nbanimal }}</td>
+                <td>
+                    <a href="{{ path('voyage_organise_show', {'id': voyage_organise.id}) }}">show</a>
+                    <a href="{{ path('voyage_organise_edit', {'id': voyage_organise.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('voyage_organise_new') }}">Create new</a>
+{% endblock %}

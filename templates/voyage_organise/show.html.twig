@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VoyageOrganise{% endblock %}
+
+{% block body %}
+    <h1>VoyageOrganise</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ voyage_organise.id }}</td>
+            </tr>
+            <tr>
+                <th>Idvoy</th>
+                <td>{{ voyage_organise.idvoy }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ voyage_organise.pays }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ voyage_organise.date ? voyage_organise.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nbjours</th>
+                <td>{{ voyage_organise.nbjours }}</td>
+            </tr>
+            <tr>
+                <th>Programme</th>
+                <td>{{ voyage_organise.programme }}</td>
+            </tr>
+            <tr>
+                <th>Tarif</th>
+                <td>{{ voyage_organise.tarif }}</td>
+            </tr>
+            <tr>
+                <th>Nbanimal</th>
+                <td>{{ voyage_organise.nbanimal }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('voyage_organise_index') }}">back to list</a>
+
+    <a href="{{ path('voyage_organise_edit', {'id': voyage_organise.id}) }}">edit</a>
+
+    {{ include('voyage_organise/_delete_form.html.twig') }}
+{% endblock %}
