@@ -1,0 +1,68 @@
+
+{% extends 'base/base.html.twig ' %}
+
+
+{% block titre %}
+Reclamation
+{% endblock %}
+
+
+
+
+
+
+{% block section%}
+{% endblock %}
+{% block corp%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container rounded bg-white mt-5 mb-5">
+<div class="images-container">
+
+</div>
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                </div>
+
+
+                {% for Reclamation in Reclamations %}
+
+<h3  style="color:orange">Reclamation {{ Reclamation.titre }} </h3>
+<br><br><br>
+<p>contenu &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{Reclamation.contenu}}</p>
+
+<button class="btn btn-danger" ><a href="{{ path('reclamationadmin') }}" style="color:white">back </a></button>
+
+
+                {% endfor %}
+
+
+
+
+{%endblock%}
+
+
+{% block footer%}
+
+{%endblock%}
+

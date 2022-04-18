@@ -1,0 +1,46 @@
+{% extends 'base/baseadmin.html.twig' %}
+
+{% block titre %}  Dresseur  {% endblock %}
+{% block body %}
+    <h1>Dresseur</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Picture</th>
+            <td>{{ dresseur.picture }}</td>
+        </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ dresseur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ dresseur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Specialite</th>
+                <td>{{ dresseur.specialite }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ dresseur.email }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ dresseur.address }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ dresseur.date|date("m/d/Y") }}</td>
+            </tr>
+            <tr>
+                <th>Num</th>
+                <td>{{ dresseur.num }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-danger" ><a href="{{ path('app_dresseur_index')}}" style="color:white">Retourner</a></button>
+
+{% endblock %}

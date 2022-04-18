@@ -1,0 +1,66 @@
+{% extends 'base/base.html.twig ' %}
+{% form_theme formReclamation  'bootstrap_4_layout.html.twig' %}
+
+{% block titre %}
+reclamation
+{% endblock %} 
+
+
+
+
+{% block section%}
+{% endblock %}
+
+
+
+
+
+
+{% block corp%}
+
+
+
+
+
+
+{% for message in app.flashes('info')%}
+<div class="alert alert-success">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      {{message}}
+</div>
+  {% endfor %}
+
+
+
+
+
+
+<link rel="stylesheet" href="css/reclamation.css">
+       <div class="wrapper">
+               <div class="title">
+               reclamation
+               </div>
+               <br>
+              {{ form_start(formReclamation, {attr: {novalidate: 'novalidate'}}) }}
+              <div class="inputfield">
+              {{ form_row( formReclamation.titre,{'attr' : {'placeholder' : "saisir votre titre "}}) }}
+              </div>  
+              <div class="inputfield">
+              {{ form_row( formReclamation.contenu,{'attr' : {'placeholder' : "saisir votre contenu"}}) }}
+                </div> 
+                <br>  <br>
+              <button type="submit" class="btn btn-success" style="margin-left:35%">Envoyer</button>
+
+         </div>
+
+ 
+{{ form_end (formReclamation)}}
+</div>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="width:33%;height:52%;margin-top:-48% ;margin-left:57%"  = "img/reclamation.jpg" alt="reclamation image">
+
+
+{% endblock %}
+
+
+
