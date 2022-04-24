@@ -11,7 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
- 
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use App\Repository\ReclamationRepository;
+
+
+
 class ReclamationController extends Controller
 {
 
@@ -141,6 +146,44 @@ public function deleteReclamation(int $id): Response
 
     return $this->redirectToRoute("reclamationadmin");
 }
+
+    /**
+     * @Route("/pdf", name="pdf")
+     */
+    public function list(ReclamationRepository $reclamationRepository, Request $request): Response
+
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $Reclamation=$reclamationRepository->findAll();
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('reclamation/PDF.html.twig', [
+            'Reclamations' => $Reclamation,
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A3', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("Reclamation.pdf", [
+            "Attachment" => false
+        ]);
+
+
+
+    }
+
 
 
 

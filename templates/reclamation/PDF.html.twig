@@ -1,0 +1,30 @@
+<title>Reclamation</title>
+
+
+<h1>Reclamations</h1>
+
+<table class="table" border="1">
+    <thead>
+    <tr>
+        <td>Titre</td>
+        <td>Contenu</td>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for Reclamation in Reclamations %}
+        <tr>
+
+            <td>{{Reclamation.titre}}</td>
+            <td> {{Reclamation.contenu}}</td>
+
+
+
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

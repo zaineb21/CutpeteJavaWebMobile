@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Urlizer;
 use App\Entity\Veterinaire;
 use App\Form\VeterinaireType;
 use App\Repository\VeterinaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+
 
 /**
  * @Route("/veterinaire")
@@ -35,8 +39,26 @@ class VeterinaireController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['picture']->getData();
+            $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move(
+                $destination,
+                $newFilename
+
+            );
+            $veterinaire->setPicture($newFilename);
+
+
             $veterinaire->setDate( new \DateTime('now'));
             $veterinaireRepository->add($veterinaire);
+            $this->addFlash(
+                'info',
+                ' Un veterinaire est ajouté avec succsé'
+            );
             return $this->redirectToRoute('app_veterinaire_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -2,31 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Reclamation;
+use App\Entity\Urlizer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
-
 /**
- * @method Reclamation|null find($id, $lockMode = null, $lockVersion = null)
- * @method Reclamation|null findOneBy(array $criteria, array $orderBy = null)
- * @method Reclamation[]    findAll()
- * @method Reclamation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Urlizer|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Urlizer|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Urlizer[]    findAll()
+ * @method Urlizer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ReclamationRepository extends ServiceEntityRepository
+class UrlizerRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Reclamation::class);
+        parent::__construct($registry, Urlizer::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Reclamation $entity, bool $flush = true): void
+    public function add(Urlizer $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -38,7 +37,7 @@ class ReclamationRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Reclamation $entity, bool $flush = true): void
+    public function remove(Urlizer $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -47,15 +46,15 @@ class ReclamationRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Reclamation[] Returns an array of Reclamation objects
+    //  * @return Urlizer[] Returns an array of Urlizer objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
+            ->orderBy('u.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -64,10 +63,10 @@ class ReclamationRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Reclamation
+    public function findOneBySomeField($value): ?Urlizer
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()

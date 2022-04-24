@@ -5,14 +5,16 @@
     <h1>Dresseur</h1>
 
     <table class="table">
-        <tbody>
+
         <tr>
-            <th>Picture</th>
-            <td>{{ dresseur.picture }}</td>
+            <th>Photo</th>
+            <td><img  src="/uploads/{{dresseur.picture}}" id="img"  alt="Image"
+                      style =" width : 200px  "></td>
         </tr>
+        <tr>
             <tr>
-                <th>Nom</th>
-                <td>{{ dresseur.nom }}</td>
+            <th>Nom</th>
+            <td>{{ dresseur.nom }}</td>
             </tr>
             <tr>
                 <th>Prenom</th>

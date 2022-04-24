@@ -9,6 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer ;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
+use App\Entity\Urlizer;
 
 /**
  * @Route("/dresseur")
@@ -35,8 +41,27 @@ class DresseurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['picture']->getData();
+            $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move(
+                $destination,
+                $newFilename
+
+            );
+            $dresseur->setPicture($newFilename);
+
+
+
             $dresseur->setDate( new \DateTime('now'));
             $dresseurRepository->add($dresseur);
+            $this->addFlash(
+                'info',
+                ' Un dresseur est ajouté avec succsé'
+              );
             return $this->redirectToRoute('app_dresseur_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -97,7 +122,7 @@ class DresseurController extends AbstractController
         $em->flush();
         $this->addFlash(
             'info',
-            ' le Dresseur a été supprimé avec succès'
+            'le Dresseur a été supprimé avec succès'
         );
 
         return $this->redirectToRoute('app_dresseur_index');

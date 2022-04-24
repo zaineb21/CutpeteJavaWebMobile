@@ -1,12 +1,10 @@
 
-{% extends 'base/base.html.twig ' %}
+{% extends 'base/base.html.twig' %}
 
 
 {% block titre %}
-Veterinaires
+    veterinaire
 {% endblock %}
-
-
 
 
 {% block section%}
@@ -14,79 +12,83 @@ Veterinaires
 
 
 
-{% block corp%}
+{% block corp %}
+    <br>
+    <h2>Liste des veterinaires:</h2>
+    <br><br>
+
+    <table id="customers">
+
+
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            color: black;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #ED6436;
+            color: black;
+        }
+    </style>
 
 
 
 
+    <tr>
 
 
+        <th>Photo  </th>
+        <th>Nom  </th>
+        <th>Prénom  </th>
+        <th>Emplacement</th>
+        <th>Date de mise en service</th>
+        <th>Numero</th>
+        <th>Votez</th>
 
+    </tr>
+    {% for veterinaire in veterinaires %}
+        <tr style="color: #f5f5dc">
 
+            <td><img  src="/uploads/{{veterinaire.picture}}" id="img"  alt="Image"
+                      style =" width : 100px  "> </td>
+            <td>{{veterinaire.nom}}</td>
+            <td>{{veterinaire.prenom}}</td>
+            <td>{{veterinaire.address}}</td>
+            <td>{{veterinaire.date|date("m/d/Y")}}</td>
+            <td>{{veterinaire.numero}}</td>
+            <td></td>
 
+        </tr>
+        </thead>
 
-
-
-
-
-
-
-<div class="container rounded bg-white mt-5 mb-5">
-    <div class="images-container">
-
-    </div>
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"></div>
         </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-
-                </div>
-                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
-                    <thead class="thead-primary">
-                    <tr style="color:#df5">
-
-
-                        <th>Photo  </th>
-                        <th>Nom  </th>
-                        <th>Prénom  </th>
-                        <th>Emplacement</th>
-                        <th>Date de mise en service</th>
-                        <th>Numero</th>
-                        <th colspan="3" style="text-align: center">Actions</th>
-
-                    </tr>
-                    {% for veterinaire in veterinaires %}
-                    <tr style="color: #f5f5dc">
-
-                        <td>{{veterinaire.picture }}</td>
-                        <td>{{veterinaire.nom}}</td>
-                        <td>{{veterinaire.prenom}}</td>
-                        <td>{{veterinaire.email}}</td>
-                        <td>{{veterinaire.address}}</td>
-                        <td>{{veterinaire.date|date("m/d/Y")}}</td>
-                        <td>{{veterinaire.numero}}</td>
-                        <td> <button class="btn btn-primary" ><a href="{{ path('app_veterinaire_show', {'id': veterinaire.id}) }}" style="color:white">Afficher</a></button></td>
-
-                    </tr>
-                    {% endfor %}
-
-                </table>
-
-
-                </table>
+    {% endfor %}
+    </table>
 
 
 
 
 
 
-                {%endblock%}
 
 
-                {% block footer%}
 
-                {%endblock%}
+{%endblock%}
+
+
 

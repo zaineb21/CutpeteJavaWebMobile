@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Veterinaire;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,7 +17,12 @@ class VeterinaireType extends AbstractType
             ->add('prenom')
             ->add('email')
             ->add('address')
-            ->add('picture')
+            ->add('picture', FileType::class,[
+
+                'mapped' => false
+
+
+            ])
             ->add('numero')
         ;
     }

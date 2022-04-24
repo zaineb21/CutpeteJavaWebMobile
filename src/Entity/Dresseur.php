@@ -60,7 +60,8 @@ class Dresseur
     private $date;
 
     /**
-     * @ORM\Column(type="integer")@Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
+     * @ORM\Column(type="integer")
+     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
      * @Assert\NotBlank(message="Ce champs est obligatoire * ")
      *
      */
@@ -68,8 +69,6 @@ class Dresseur
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
-     * @Assert\NotBlank(message="Ce champs est obligatoire *")
      */
     private $picture;
 

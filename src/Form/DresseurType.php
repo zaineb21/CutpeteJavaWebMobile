@@ -28,7 +28,12 @@ class DresseurType extends AbstractType
         ->add('email')
             ->add('address')
             ->add('num')
-            ->add('picture')
+            ->add('picture', FileType::class,[
+
+                'mapped' => false
+
+
+            ])
         ;
     }
 
