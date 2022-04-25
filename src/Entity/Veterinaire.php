@@ -89,7 +89,7 @@ class Veterinaire
     /**
      * @return string
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -105,7 +105,7 @@ class Veterinaire
     /**
      * @return string
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -121,7 +121,7 @@ class Veterinaire
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -137,7 +137,7 @@ class Veterinaire
     /**
      * @return string
      */
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
         return $this->address;
     }
@@ -185,7 +185,7 @@ class Veterinaire
     /**
      * @return int
      */
-    public function getNumero(): int
+    public function getNumero(): ?int
     {
         return $this->numero;
     }

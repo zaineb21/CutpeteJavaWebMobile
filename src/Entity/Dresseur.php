@@ -96,7 +96,7 @@ class Dresseur
     /**
      * @return string
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -112,7 +112,7 @@ class Dresseur
     /**
      * @return string
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -128,7 +128,7 @@ class Dresseur
     /**
      * @return string
      */
-    public function getSpecialite(): string
+    public function getSpecialite(): ?string
     {
         return $this->specialite;
     }
@@ -144,7 +144,7 @@ class Dresseur
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -160,7 +160,7 @@ class Dresseur
     /**
      * @return string
      */
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
         return $this->address;
     }
@@ -192,7 +192,7 @@ class Dresseur
     /**
      * @return int
      */
-    public function getNum(): int
+    public function getNum(): ?int
     {
         return $this->num;
     }
