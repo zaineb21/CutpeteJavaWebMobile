@@ -1,0 +1,26 @@
+
+
+
+
+
+{% extends 'baseFront.html.twig ' %}
+
+{% block titre %}
+    Mon Panier
+{% endblock %}
+
+{% block section%}
+{% endblock %}
+{% block corp%}
+    <h1>Create new Commande</h1>
+
+    {{ include('commande/_form.html.twig') }}
+
+
+    <a href="{{ path('app_commande_indexFrontPanier', {'idUtulisateur':1}) }}">Retour Vers Mon Panier</a>
+
+{%endblock%}
+
+
+
+

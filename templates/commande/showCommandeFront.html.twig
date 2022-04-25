@@ -1,0 +1,87 @@
+
+{% extends 'baseFront.html.twig ' %}
+
+{% block titre %}
+    Reclamation
+{% endblock %}
+
+{% block section%}
+{% endblock %}
+{% block corp%}
+    <h1> vos Commande </h1>
+
+    <table class="table">
+    {%set totalP=0 %}
+    {%set totalC=0 %}
+
+    <thead>
+
+
+
+    <tr>
+            <th>IdCommande</th>
+            <th>AdresseCommande</th>
+
+        </tr>
+
+        </thead>
+        <style>
+
+            .total-amount{
+                font-size: 20px;
+                font-family: ‘Open Sans’;
+                font-weight: 700;
+                color: #9B7536;
+                padding-left:1000px;
+            }
+
+        </style>
+        <tbody>
+        {%set totalP=0 %}
+        {%set totalC=0 %}
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.idCommande }}</td>
+                <td>{{ commande.adresseCommande }}</td>
+<td>etat</td>
+
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% for produit in produits %}
+        {% for panier in paniers %}
+            {% if panier.idproduit  == produit %}
+
+
+
+
+                    {% for codePromo in codePromos %}
+                        {% if panier.codePromo  == codePromo %}
+
+                            {% set  totalC= totalC+ produit.prix_produit * panier.quantitePanier -((produit.prix_produit * panier.quantitePanier)*(codePromo.pourcentage/100))   %}
+                        {% endif %}
+                    {% endfor %}
+                    {% set  totalP=  totalP + produit.prix_produit * panier.quantitePanier   %}
+
+
+
+
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    <div  class = "total-amount" >total Avant reduction={{ totalP }}dt</div >
+    <div  class = "total-amount" >total Apres reduction={{ totalC }}dt</div >
+
+
+    <a href="{{ path('app_commande_pdfFront') }}">pdf</a>
+{%endblock%}
+
+
+

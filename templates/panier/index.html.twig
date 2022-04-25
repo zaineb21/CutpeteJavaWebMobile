@@ -1,0 +1,50 @@
+
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Panier index{% endblock %}
+
+
+
+{% block body %}
+    <h1>Panier index</h1>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th>IdProduit</th>
+            <th>IdUtilisateur</th>
+            <th>nom Utilisateur</th>
+            <th>QuantitePanier</th>
+            <th>code Promo</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for panier in paniers %}
+            <tr>_
+                <td>{{ panier.idProduit.idProduit}}</td>
+                <td>{{panier.idUtulisateur.idUtilisateur}} </td>
+                <td> {{panier.idUtulisateur.nom}} </td>
+                <td>{{ panier.quantitePanier }}</td>
+                <td>{{ panier.codepromo.idcodepromo }}</td>
+
+
+
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}
+

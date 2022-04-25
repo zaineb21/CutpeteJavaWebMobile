@@ -1,0 +1,43 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}CodePromo index{% endblock %}
+
+{% block body %}
+    <h1>CodePromo index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdCodepromo</th>
+                <th>Pourcentage</th>
+                <th>Nomblogeuse</th>
+                <th>Nb</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for code_promo in code_promos %}
+            <tr>
+                <td>{{ code_promo.idCodepromo }}</td>
+                <td>{{ code_promo.pourcentage }}</td>
+                <td>{{ code_promo.nomblogeuse }}</td>
+                <td>{{ code_promo.nb }}</td>
+                <td>
+                    <a href="{{ path('app_code_promo_show', {'idCodepromo': code_promo.idCodepromo}) }}">show</a>
+                    <a href="{{ path('app_code_promo_edit', {'idCodepromo': code_promo.idCodepromo}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_code_promo_new') }}">Create new</a>
+
+    <a href="{{ path('redirection') }}">QR code</a>
+{{ knp_pagination_render(code_promos) }}
+{% endblock %}
+

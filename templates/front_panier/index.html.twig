@@ -1,0 +1,50 @@
+
+
+
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Panier index{% endblock %}
+
+
+
+{% block body %}
+    <h1>Panier index</h1>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th>IdProduit</th>
+            <th>IdUtilisateur</th>
+            <th>QuantitePanier</th>
+            <th>code Promo</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for panier in paniers %}
+            <tr>_
+                <td>{{ panier.idProduit.idProduit}}</td>
+                <td>{{ panier.quantitePanier }}</td>
+                <td>{{ panier.codepromo.idcodepromo }}</td>
+                <td>{{ panier.idUtulisateur.idUtilisateur }}</td>
+
+
+                <td>
+                    <a href="{{ path('app_panier_show', {'idPanier': panier.idPanier}) }}">afficher details</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}
+
