@@ -2,174 +2,224 @@
 
 namespace App\Entity;
 
-use App\Repository\DresseurRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=DresseurRepository::class)
+ * Dresseur
+ *
+ * @ORM\Table(name="dresseur")
+ * @ORM\Entity
  */
 class Dresseur
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
-     * @Assert\NotBlank(message="Ce champs est obligatoire * ")
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
-     * @Assert\NotBlank(message="Ce champs est obligatoire * ")
+     * @var string
+     *
+     * @ORM\Column(name="specialite", type="string", length=255, nullable=false)
      */
     private $specialite;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
-     * @Assert\NotBlank(message="Ce champs est obligatoire *")
-     * @Assert\Email(
-     *     message = "L'email '{{ value }}' n'est pas un email."
-     * )
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
-     * @Assert\NotBlank(message="Ce champs est obligatoire * ")
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255, nullable=false)
      */
     private $address;
 
     /**
-     * @ORM\Column(type="date")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=false)
      */
     private $date;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
-     * @Assert\NotBlank(message="Ce champs est obligatoire * ")
+     * @var int
      *
+     * @ORM\Column(name="num", type="integer", nullable=false)
      */
     private $num;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     private $picture;
 
-    public function getId(): ?int
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNom(): string
     {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    /**
+     * @param string $nom
+     */
+    public function setNom(string $nom): void
     {
         $this->nom = $nom;
-
-        return $this;
     }
 
-    public function getPrenom(): ?string
+    /**
+     * @return string
+     */
+    public function getPrenom(): string
     {
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): self
+    /**
+     * @param string $prenom
+     */
+    public function setPrenom(string $prenom): void
     {
         $this->prenom = $prenom;
-
-        return $this;
     }
 
-    public function getSpecialite(): ?string
+    /**
+     * @return string
+     */
+    public function getSpecialite(): string
     {
         return $this->specialite;
     }
 
-    public function setSpecialite(string $specialite): self
+    /**
+     * @param string $specialite
+     */
+    public function setSpecialite(string $specialite): void
     {
         $this->specialite = $specialite;
-
-        return $this;
     }
 
-    public function getEmail(): ?string
+    /**
+     * @return string
+     */
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
     {
         $this->email = $email;
-
-        return $this;
     }
 
-    public function getAddress(): ?string
+    /**
+     * @return string
+     */
+    public function getAddress(): string
     {
         return $this->address;
     }
 
-    public function setAddress(string $address): self
+    /**
+     * @param string $address
+     */
+    public function setAddress(string $address): void
     {
         $this->address = $address;
-
-        return $this;
     }
 
-    public function getDate(): \DateTimeInterface
+    /**
+     * @return \DateTime
+     */
+    public function getDate(): \DateTime
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate(\DateTime $date): void
     {
         $this->date = $date;
-
-        return $this;
     }
 
-    public function getNum(): ?int
+    /**
+     * @return int
+     */
+    public function getNum(): int
     {
         return $this->num;
     }
 
-    public function setNum(int $num): self
+    /**
+     * @param int $num
+     */
+    public function setNum(int $num): void
     {
         $this->num = $num;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    public function setPicture(?string $picture): self
+    /**
+     * @param string|null $picture
+     */
+    public function setPicture(?string $picture): void
     {
         $this->picture = $picture;
-
-        return $this;
     }
+
+
 }

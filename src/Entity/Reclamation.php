@@ -2,62 +2,110 @@
 
 namespace App\Entity;
 
-use App\Repository\ReclamationRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=ReclamationRepository::class)
+ * Reclamation
+ *
+ * @ORM\Table(name="reclamation", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
+ * @ORM\Entity
  */
 class Reclamation
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre titre ")
-     * @Assert\NotBlank(message="Le champs titre est obligatoire * ")
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255, nullable=false)
      */
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length( min = 5 , minMessage = "Merci de Vérifier Votre contenu")
-     * @Assert\NotBlank(message="Le champs contenu est obligatoire * ")
+     * @var string
+     *
+     * @ORM\Column(name="contenu", type="string", length=255, nullable=false)
      */
     private $contenu;
 
-    public function getId(): ?int
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
     public function getTitre(): ?string
     {
         return $this->titre;
     }
 
-    public function setTitre(string $titre): self
+    /**
+     * @param string $titre
+     */
+    public function setTitre(string $titre): void
     {
         $this->titre = $titre;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getContenu(): ?string
     {
         return $this->contenu;
     }
 
-    public function setContenu(string $contenu): self
+    /**
+     * @param string $contenu
+     */
+    public function setContenu(string $contenu): void
     {
         $this->contenu = $contenu;
-
-        return $this;
     }
+
+
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+    return $this;}
+
+
 }

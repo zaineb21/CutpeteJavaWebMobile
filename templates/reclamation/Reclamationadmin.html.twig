@@ -47,7 +47,7 @@
                             <thead class="thead-primary">
                             <tr style="color:#df5">
 
-   <th>ID</th>
+   <th>La personne</th>
     <th>Titre de Reclamation </th>
 
     <th>contenu</th>
@@ -57,7 +57,7 @@
  
    {% for Reclamation in Reclamations %}
    <tr style="color: #f5f5dc">
-    <td>{{Reclamation.id }}</td> 
+    <td>{{Reclamation.getuser().username }}</td>
     <td>{{Reclamation.titre}}</td>
     <td>{{Reclamation.contenu}}</td>
        <td> <button class="btn btn-danger" ><a href="{{ path('delete_Reclamation', {'id': Reclamation.id}) }}" style="color:white">Supprimer</a></button></td>
