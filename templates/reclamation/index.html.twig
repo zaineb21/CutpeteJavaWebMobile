@@ -31,7 +31,11 @@ reclamation
   {% endfor %}
 
 
-
+    {% for message in app.flashes('erreur')%}
+        <div class="alert alert-error" style="background:red;">
+            {{message}}
+        </div>
+    {% endfor %}
 
 
 

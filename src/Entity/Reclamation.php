@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Reclamation
@@ -22,16 +23,16 @@ class Reclamation
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="titre", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre titre ")
+     * @Assert\NotBlank(message="Le champs titre est obligatoire * ")
      */
     private $titre;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="contenu", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length( min = 5 , minMessage = "Merci de Vérifier Votre contenu")
+     * @Assert\NotBlank(message="Le champs contenu est obligatoire * ")
      */
     private $contenu;
 

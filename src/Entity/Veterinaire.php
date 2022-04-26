@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,30 +23,33 @@ class Veterinaire
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
+     * @Assert\NotBlank(message="Ce champs est obligatoire * ")
      */
     private $nom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
+     * @Assert\NotBlank(message="Ce champs est obligatoire * ")
      */
     private $prenom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
+     * @Assert\NotBlank(message="Ce champs est obligatoire *")
+     * @Assert\Email(
+     *     message = "L'email '{{ value }}' n'est pas un email."
+     * )
      */
     private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="address", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length( min = 3, max = 20, minMessage = "Merci de Vérifier Votre champs ")
+     * @Assert\NotBlank(message="Ce champs est obligatoire * ")
      */
     private $address;
 

@@ -49,34 +49,79 @@ class ReclamationController extends Controller
     /**
      * @Route("/reclamation", name="reclamationCreate")
      */
-    public function create (Request $request ,EntityManagerInterface $entityManager)
-    { 
- 
+    public function create (Request $request ,EntityManagerInterface $entityManager, \Swift_Mailer $mailer)
+    {
+
         $Reclamation = new Reclamation ();
 
         $form = $this ->createForm(ReclamationType::class,$Reclamation);
-                       
-       
-                 $form->handleRequest($request)  ;  
-                
-                if ($form->isSubmitted() && $form->isValid()) {
 
-                    $entityManager=$this->getdoctrine()->getManager();
-                    
-                  $entityManager->persist($Reclamation);
-                  $entityManager->flush();
-                  $this->addFlash(
+
+        $form->handleRequest($request)  ;
+        $myDictionary = array(
+            "tue", "merde",
+            "gueule",
+            "débile",
+            "con",
+            "abruti",
+            "clochard",
+            "sang"
+        );
+        dump($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $myText = $request->get("reclamation")['contenu'];
+            $badwords = new PhpBadWordsController();
+            $badwords->setDictionaryFromArray($myDictionary)
+                ->setText($myText);
+            $check = $badwords->check();
+            dump($check);
+            if ($check) {
+                $this->addFlash(
+                    'erreur',
+                    'Mot inapproprié!'
+                );
+            } else {
+
+                $entityManager = $this->getdoctrine()->getManager();
+
+
+
+
+                $entityManager->persist($Reclamation);
+                $entityManager->flush();
+                $this->addFlash(
                     'info',
-                  ' Votre Réclamation a été envoyer'
-              );
-    
+                    'votre reclamation a bien été envoyé'
+                );
+            }
+
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+
+
+            $message= (new \Swift_Message('Confirmation'))
+
+                ->setFrom('mohamedsadok.dorbez@esprit.tn')
+                ->setTo($Reclamation->getUser()->getEmail())
+                ->setBody(
+                    "<p>Bonjour,</p><p>votre reclamation a été effectuée avec succès " ,
+                    'text/html' )
+            ;
+
+            $mailer->send($message);
+
+
+
         }
-           
+
+
         return $this->render('reclamation/index.html.twig', [
             'formReclamation' => $form->createView()
-          
+
         ]);
- 
+
     }
 
 
@@ -89,13 +134,13 @@ class ReclamationController extends Controller
 
         $repo = $this ->getDoctrine()->getRepository(Reclamation::class);
         $Reclamations=$repo->findAll();
- 
+
 
 
         return $this->render('reclamation/reclamationadmin.html.twig', [
             'controller_name' => 'ReclamationController',
-             'Reclamations' => $Reclamations
-           
+            'Reclamations' => $Reclamations
+
         ]);
     }
 
@@ -108,44 +153,44 @@ class ReclamationController extends Controller
 
 
 
- 
-    
-
-    /**
- * @Route("/Reclamation/{id}", name="Reclamation")
- */
-public function reclamation(int $id): Response
-{
-    $Reclamation = $this->getDoctrine()->getRepository(Reclamation::class)->find($id);
-
-    return $this->render("reclamation/reclamationadmin.html.twig", [
-        "Reclamation" => $Reclamation,
-    ]);
-}
-
-
-
-
-
 
 
 
     /**
- * @Route("/delete-Reclamation/{id}", name="delete_Reclamation")
- */
-public function deleteReclamation(int $id): Response
-{
-    $entityManager = $this->getDoctrine()->getManager();
-    $Reclamation = $entityManager->getRepository(Reclamation::class)->find($id);
-    $entityManager->remove($Reclamation);
-    $entityManager->flush();
-    $this->addFlash(
-        'info',
-      ' la Reclamation a été supprimé avec succès'
-  );
+     * @Route("/Reclamation/{id}", name="Reclamation")
+     */
+    public function reclamation(int $id): Response
+    {
+        $Reclamation = $this->getDoctrine()->getRepository(Reclamation::class)->find($id);
 
-    return $this->redirectToRoute("reclamationadmin");
-}
+        return $this->render("reclamation/reclamationadmin.html.twig", [
+            "Reclamation" => $Reclamation,
+        ]);
+    }
+
+
+
+
+
+
+
+
+    /**
+     * @Route("/delete-Reclamation/{id}", name="delete_Reclamation")
+     */
+    public function deleteReclamation(int $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $Reclamation = $entityManager->getRepository(Reclamation::class)->find($id);
+        $entityManager->remove($Reclamation);
+        $entityManager->flush();
+        $this->addFlash(
+            'info',
+            ' la Reclamation a été supprimé avec succès'
+        );
+
+        return $this->redirectToRoute("reclamationadmin");
+    }
 
     /**
      * @Route("/pdf", name="pdf")
