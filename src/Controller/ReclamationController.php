@@ -24,12 +24,25 @@ class ReclamationController extends Controller
     /**
      * @Route("/HomeBack", name="HomeBack")
      */
-    public function HomeBack(): Response
+    public function HomeBack(EntityManagerInterface $entityManager)
     {
+
+
+
+        $Reclamations=$entityManager->createQuery('SELECT COUNT(u) FROM App\Entity\Reclamation u')->getSingleScalarResult();
+        $Dresseur=$entityManager->createQuery('SELECT COUNT(u) FROM App\Entity\Dresseur u')->getSingleScalarResult();
+        $Veterinaire=$entityManager->createQuery('SELECT COUNT(u) FROM App\Entity\Veterinaire u')->getSingleScalarResult();
         return $this->render('home/HomeBack.html.twig', [
-            'controller_name' => 'PostController',
+            'stats' => compact ('Reclamations','Veterinaire','Dresseur')
         ]);
     }
+
+
+
+
+
+
+
 
 
 
@@ -134,6 +147,15 @@ class ReclamationController extends Controller
 
         $repo = $this ->getDoctrine()->getRepository(Reclamation::class);
         $Reclamations=$repo->findAll();
+
+        $Reclamations = $this->get('knp_paginator')->paginate(
+
+            $Reclamations,
+
+            $request->query->getInt('page', 1),
+
+            5
+        );
 
 
 

@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 
@@ -22,11 +24,21 @@ class VeterinaireController extends AbstractController
     /**
      * @Route("/", name="app_veterinaire_index", methods={"GET"})
      */
-    public function veterinaire(VeterinaireRepository $veterinaireRepository): Response
+    public function veterinaire(PaginatorInterface $paginator, EntityManagerInterface $entityManager,Request $request): Response
     {
+        $veterinaire = $entityManager
+            ->getRepository(veterinaire::class)
+            ->findAll();
+        $veterinaire = $paginator->paginate(
+            $veterinaire,
+            $request->query->getInt('page',1),
+            3
+        );
+
         return $this->render('veterinaire/veterinaire.html.twig', [
-            'veterinaires' => $veterinaireRepository->findAll(),
+            'veterinaires' => $veterinaire,
         ]);
+
     }
 
     /**

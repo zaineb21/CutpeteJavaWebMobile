@@ -1,9 +1,9 @@
-
 {% extends 'base/base.html.twig' %}
 
 
 {% block titre %}
     Dresseur
+
 {% endblock %}
 
 
@@ -13,6 +13,9 @@
 
 
 {% block corp %}
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+    </head>
     <br>
  <h2>Liste des dresseurs:</h2>
     <br><br>
@@ -44,6 +47,50 @@
             background-color: #ED6436;
             color: black;
         }
+        .rating{
+            display: flex;
+            rotateY(180deg);
+
+        }
+        .rating input{
+            /*display: none;*/
+        }
+        .rating label{
+            display: block;
+            cursor: pointer;
+            width: 20px;
+            background: #ccc;
+        }
+        .rating label:before{
+            content: '\f005';
+            font-family: FontAwesome;
+            position: relative;
+            display:block;
+            font-size: 20px;
+            color: #101010;
+        }
+        .rating label:after{
+            content: '\f005';
+            font-family: FontAwesome;
+            position: absolute;
+            display:block;
+            font-size: 20px;
+            color: #1f9cff;
+            top: 0;
+            opacity: 0;
+            transition: .5s;
+            text-shadow: 0 25px 5px rgba(0,0,0,.5);
+
+        }
+
+        .rating label:hover:after,
+        .rating input:checked~label:after
+        {
+           opacity: 1;
+
+
+
+        }
     </style>
 
 
@@ -73,7 +120,18 @@
                             <td>{{dresseur.address}}</td>
                             <td>{{dresseur.date|date("m/d/Y")}}</td>
                             <td>{{dresseur.num}}</td>
-                            <td> </td>
+                            <td><div class="rating">
+                                    <input type="radio" name="star" id="star1"><label for="star1">
+                                    </label>
+                                    <input type="radio" name="star" id="star2"><label for="star2">
+                                    </label>
+                                    <input type="radio" name="star" id="star3"><label for="star3">
+                                    </label>
+                                    <input type="radio" name="star" id="star4"><label for="star4">
+                                    </label>
+                                    <input type="radio" name="star" id="star5"><label for="star5">
+                                    </label>
+                                </div> </td>
 
                         </tr>
                     </thead>

@@ -1,14 +1,87 @@
 {% extends 'base/baseadmin.html.twig' %}
 
-{% block corp %}
+{% block body %}
+
+     <div class="row" >
+
+        <div class="clearfix hidden-md-up" ></div>
+        <div class="col-12 col-sm-6 col-md-3" >
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Reclamations</span>
+                    <span class="info-box-number">{{stats.Reclamations}}</span>
+                </div>
+
+            </div>
+
+        </div>
+     </div>
 
 
-    <br><br>
+        <canvas id="graph"></canvas>
 
-    <center><img  src="/images/bien.jpg" id="img"  alt="Image"
-                  style =" width : 700px  "></center>
 
-    <br><br>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+       <script>
+        const graph = document.getElementById("graph").getContext("2d");
+
+        Chart.defaults.global.defaultFontSize = 18;
+
+        let massPopChart = new Chart(graph, {
+            type: "pie", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: [
+                    "Veterinaire",
+                    "Dresseur",
+                ],
+                datasets: [
+                    {
+                        label: "Population en M ",
+                        data: [{{stats.Dresseur}} , {{stats.Veterinaire}}],
+                        // backgroundColor: "blue",
+                        backgroundColor: [
+                            "#d6cbd3",
+                            "#eca1a6",
+
+                        ],
+                        hoverBorderWidth: 3,
+                    },
+                ],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Nombre des staffs ",
+                    fontSize: 24,
+                },
+                legend: {
+                    display: true,
+                },
+                // start at 0
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        },
+                    ],
+                },
+                layout: {
+                    padding: {
+                        left: 100,
+                        right: 100,
+                        top: 50,
+                    },
+                },
+            },
+        });
+    </script>
+
+
+
 
 
 {% endblock %}

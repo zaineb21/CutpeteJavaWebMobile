@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use App\Entity\Urlizer;
+use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @Route("/dresseur")
@@ -24,12 +26,23 @@ class DresseurController extends AbstractController
     /**
      * @Route("/", name="app_dresseur_index", methods={"GET"})
      */
-    public function dresseur(DresseurRepository $dresseurRepository): Response
+    public function dresseur(PaginatorInterface $paginator, EntityManagerInterface $entityManager,Request $request): Response
     {
+        $dresseur = $entityManager
+            ->getRepository(dresseur::class)
+            ->findAll();
+        $dresseur = $paginator->paginate(
+            $dresseur,
+            $request->query->getInt('page',1),
+            3
+        );
+
         return $this->render('dresseur/dresseur.html.twig', [
-            'dresseurs' => $dresseurRepository->findAll(),
+            'dresseurs' => $dresseur,
         ]);
+
     }
+
 
     /**
      * @Route("/new", name="app_dresseur_new", methods={"GET", "POST"})
