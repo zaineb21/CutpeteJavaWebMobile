@@ -35,8 +35,6 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row" style="margin-left: 1100px;margin-top: 0px  ">
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                   style="height: 35px; padding: 6px 15px; " href="{{ path('tri') }}">Trier</a>
                 <a href="{{ path('app_veterinaire_new') }}"> <button type="button"  class="btn btn-success">Ajouter</button> </a>
             </div>
             <div class="row justify-content-center">
@@ -65,7 +63,7 @@
                             </tr>
 
 
-                            {% for veterinaire in veterinaires %}
+                            {% for veterinaire in e %}
                                 <tr style="color: #f5f5dc">
 
                                     <td><img  src="/uploads/{{veterinaire.picture}}" id="img"  alt="Image"
@@ -85,8 +83,7 @@
 
                         </table>
                         <br><br>
-                        <th>{{ knp_pagination_render(veterinaires) }}
-                        </th>
+
 
                         <br><br>
 

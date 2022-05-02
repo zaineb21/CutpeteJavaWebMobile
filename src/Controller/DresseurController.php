@@ -150,4 +150,14 @@ class DresseurController extends AbstractController
             'dresseurs' => $dresseurRepository->findAll(),
         ]);
     }
+
+    /**
+     * @Route("/tri/nom", name="tri")
+     */
+    public function Tri()
+    {
+        $e= $this->getDoctrine()->getRepository(Dresseur::class)->TriPardate();
+        return $this->render("dresseur/Tri.html.twig",array('e'=>$e));
+    }
 }
+

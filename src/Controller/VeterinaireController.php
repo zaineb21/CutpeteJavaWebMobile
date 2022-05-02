@@ -146,5 +146,13 @@ class VeterinaireController extends AbstractController
             'veterinaires' => $veterinaireRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/tri/nom", name="tri")
+     */
+    public function Tri()
+    {
+        $e= $this->getDoctrine()->getRepository(Veterinaire::class)->TriPardate();
+        return $this->render("veterinaire/Tri.html.twig",array('e'=>$e));
+    }
 
 }

@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use App\Repository\DresseurRepository;
 /**
  * Dresseur
  *
  * @ORM\Table(name="dresseur")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\DresseurRepository")
  */
 class Dresseur
 {

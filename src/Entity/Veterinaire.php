@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use App\Repository\DresseurRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="veterinaire")
  * @ORM\Entity
+ *  @ORM\Entity(repositoryClass="App\Repository\VeterinaireRepository")
  */
 class Veterinaire
 {

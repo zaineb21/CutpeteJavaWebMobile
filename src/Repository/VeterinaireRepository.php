@@ -73,4 +73,12 @@ class VeterinaireRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function TriPardate()
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.nom','ASC ')
+            ->getQuery()
+            ->getResult();
+    }
 }
