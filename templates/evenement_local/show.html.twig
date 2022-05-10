@@ -11,10 +11,7 @@
                 <th>Id</th>
                 <td>{{ evenement_local.id }}</td>
             </tr>
-            <tr>
-                <th>IdEve</th>
-                <td>{{ evenement_local.idEve }}</td>
-            </tr>
+
             <tr>
                 <th>Nom</th>
                 <td>{{ evenement_local.nom }}</td>
@@ -42,6 +39,20 @@
             <tr>
                 <th>Nbplace</th>
                 <td>{{ evenement_local.nbplace }}</td>
+            </tr>
+            <tr>
+                <th>nombre de jours restants</th>
+                <td>{{ evenement_local.nbjoursrestant }}</td>
+            </tr>
+            <tr>
+                <th>nombre de places restantes</th>
+                <td>{{ evenement_local.nbplacerest }}</td>
+            </tr>
+            <tr>
+                <th>photo</th>
+                <td>
+                    <img src="{{ asset('/uploads/evenement/' ~ evenement_local.photo)}}" alt="Image">
+                </td>
             </tr>
         </tbody>
     </table>

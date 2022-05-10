@@ -3,9 +3,36 @@
 {% block title %}New EvenementLocal{% endblock %}
 
 {% block body %}
-    <h1>Create new EvenementLocal</h1>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3  class="card-title" >Ajouter evenement</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        {{ include('evenement_local/_form.html.twig') }}
+                    </div>
+                    <!-- /.card -->
 
-    {{ include('evenement_local/_form.html.twig') }}
+                    <!-- general form elements -->
 
-    <a href="{{ path('evenement_local_index') }}">back to list</a>
+                    <!-- /.card -->
+
+                </div>
+                <!--/.col (left) -->
+                <!-- right column -->
+
+                <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+    <a href="{{ path('evenement_local_index') }}"><button class="btn btn-primary">{{ button_label|default('back to list') }}</button></a>
 {% endblock %}

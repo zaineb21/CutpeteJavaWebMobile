@@ -3,45 +3,35 @@
 {% block title %}VoyageOrganise index{% endblock %}
 
 {% block body %}
-    <h1>VoyageOrganise index</h1>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Idvoy</th>
-            <th>Pays</th>
-            <th>Date</th>
-            <th>Nbjours</th>
-            <th>Programme</th>
-            <th>Tarif</th>
-            <th>Nbanimal</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for voyage_organise in voyage_organises %}
-            <tr>
-                <td>{{ voyage_organise.id }}</td>
-                <td>{{ voyage_organise.idvoy }}</td>
-                <td>{{ voyage_organise.pays }}</td>
-                <td>{{ voyage_organise.date ? voyage_organise.date|date('Y-m-d') : '' }}</td>
-                <td>{{ voyage_organise.nbjours }}</td>
-                <td>{{ voyage_organise.programme }}</td>
-                <td>{{ voyage_organise.tarif }}</td>
-                <td>{{ voyage_organise.nbanimal }}</td>
-                <td>
-                    <a href="{{ path('voyage_organise_show', {'id': voyage_organise.id}) }}">show</a>
-                    <a href="{{ path('voyage_organise_edit', {'id': voyage_organise.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('voyage_organise_new') }}">Create new</a>
+    <div class="container pt-5">
+        <div class="d-flex flex-column text-center mb-5 pt-5">
+            <h1 class="display-4 m-0"><span class="text-primary">Nos </span>Voyages</h1>
+        </div>
+        <div class="row pb-3">
+            {% for voyage_organise in voyage_organises %}
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-0 mb-2">
+                        <img class="card-img-top" src="{{ asset('/uploads/voyage/voyage-avec-animal-de-compagnie.jpg')}}" alt="">
+                        <div class="card-body bg-light p-4">
+                            <h4 class="card-title text-truncate">{{ voyage_organise.pays }}</h4>
+                            <!--  <div class="d-flex mb-3">
+                                    <small class="mr-2"><i class="fa fa-user text-muted"></i> Admin</small>
+                                    <small class="mr-2"><i class="fa fa-folder text-muted"></i> Web Design</small>
+                                    <small class="mr-2"><i class="fa fa-comments text-muted"></i> 15</small>
+                                </div> -->
+
+                            <a class="font-weight-bold" href="{{ path('voyage_organise_show1', {'id': voyage_organise.id}) }}">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <tr>
+                    <td colspan="10">no records found</td>
+                </tr>
+            {% endfor %}
+
+        </div>
+    </div>
 {% endblock %}

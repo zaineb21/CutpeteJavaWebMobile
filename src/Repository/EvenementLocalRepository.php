@@ -19,6 +19,25 @@ class EvenementLocalRepository extends ServiceEntityRepository
         parent::__construct($registry, EvenementLocal::class);
     }
 
+
+    /**
+     * @return EvenementLocal[]
+     */
+    public function findAllGreaterThanPrice(int $id): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\EvenementLocal p
+            WHERE p.id > :id
+            '
+        )->setParameter('id', $id);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
     // /**
     //  * @return EvenementLocal[] Returns an array of EvenementLocal objects
     //  */

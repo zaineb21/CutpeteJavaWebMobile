@@ -18,6 +18,27 @@ class ParticipationEvenementRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, ParticipationEvenement::class);
     }
+    /**
+     * @return ParticipationEvenement[]
+     */
+    public function findsimilar (int $iduser, int $ideve): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM FirstProject2\src/Entity\ParticipationEvenement p
+            WHERE p.idUser > :iduser
+            AND p.idEvent > :ideve'
+
+        )->setParameter('idUser', $iduser)
+        ->setParameter('idEvent', $ideve);
+
+        // returns an array of Product objects
+        return $query->getResult();
+
+    }
+
 
     // /**
     //  * @return ParticipationEvenement[] Returns an array of ParticipationEvenement objects

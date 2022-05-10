@@ -1,0 +1,32 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}EvenementLocal{% endblock %}
+{% block body %}
+<div class="container py-5">
+    <div class="row pt-5">
+        <div class="col-lg-8">
+            <div class="d-flex flex-column text-left mb-4">
+                <h1 class="text-secondary mb-3">{{ evenement_local.nom }}</h1>
+
+
+            </div>
+
+            <div class="mb-5">
+                <img class="img-fluid w-100 mb-4" src="{{ asset('/uploads/evenement/' ~ evenement_local.photo)}}" alt="Image">
+                <p>Description  :  {{ evenement_local.description }}</p>
+                <p class="mr-3" ><i class="fa fa-map-marker"></i> lieu : {{ evenement_local.lieu }}</p>
+                <p >Nombre De Participants : {{ evenement_local.nbparti }}</p>
+                <p class="mr-3" > Tarif :{{ evenement_local.tarif }}</p>
+                <p>Nombre De Places : {{ evenement_local.nbplace }}</p>
+
+
+
+
+
+            </div>
+            <a href="{{ path('event_res', {'id': evenement_local.id}) }}" class="btn btn-outline-primary m-1">Participer</a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

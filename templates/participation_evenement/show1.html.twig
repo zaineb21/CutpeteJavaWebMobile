@@ -1,0 +1,25 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}ParticipationEvenement{% endblock %}
+
+{% block body %}
+    {% for flash_message in app.session.flashBag.get('error') %}
+        <div class="alert alert-warning" role="alert">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    <div class="container py-5">
+        <div class="row pt-5">
+            <div class="col-lg-8">
+                <div class="d-flex flex-column text-left mb-4">
+                    <h1 class="text-secondary mb-3">{{ participation_evenement.nomEvent }}</h1>
+                </div>
+                <div class="mb-5">
+                    <img class="img-fluid w-100 mb-4" src="{{ asset('/uploads/evenement/' ~ participation_evenement.photoEvent)}}" alt="Image">
+                    <p>Date : {{ participation_evenement.dateEvent ? participation_evenement.dateEvent|date('Y-m-d') : '' }}</p>
+                </div>
+                <a href="{{ path('participation_evenement_annuler', {'id': participation_evenement.id}) }}" class="btn btn-outline-primary m-1">Annuler Votre Participation</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

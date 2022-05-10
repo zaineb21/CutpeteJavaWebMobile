@@ -1,0 +1,21 @@
+
+
+{% block title %}ParticipationEvenement{% endblock %}
+
+{% block body %}
+
+    <div class="container py-5">
+        <div class="row pt-5">
+            <div class="col-lg-8">
+
+                <div class="mb-5">
+                    <img class="img-fluid w-100 mb-4" src="{{ asset('/public/uploads/evenement/hotel-chien-chat.png')}}" alt="Image">
+                    <p class="mr-3" ><i class="fa fa-map-marker"></i> lieu : {{ evenement_local.lieu }}</p>
+                    <p class="mr-3" > Tarif :{{ evenement_local.tarif }}</p>
+                    <p>votre participation est validée</p>
+                    <img src="{{ qrCode }}" alt="qrCode">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

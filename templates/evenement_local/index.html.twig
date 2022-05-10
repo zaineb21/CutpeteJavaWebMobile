@@ -3,13 +3,16 @@
 {% block title %}EvenementLocal index{% endblock %}
 
 {% block body %}
-    <h1>EvenementLocal index</h1>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Les Evenements Locals</h3>
+    </div>
 
-    <table class="table">
+    <div class="card-body">
+        <table id="example2" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>IdEve</th>
                 <th>Nom</th>
                 <th>Date</th>
                 <th>Nbparti</th>
@@ -17,14 +20,15 @@
                 <th>Lieu</th>
                 <th>Description</th>
                 <th>Nbplace</th>
+                <th>photo</th>
                 <th>actions</th>
+
             </tr>
         </thead>
         <tbody>
         {% for evenement_local in evenement_locals %}
             <tr>
                 <td>{{ evenement_local.id }}</td>
-                <td>{{ evenement_local.idEve }}</td>
                 <td>{{ evenement_local.nom }}</td>
                 <td>{{ evenement_local.date ? evenement_local.date|date('Y-m-d') : '' }}</td>
                 <td>{{ evenement_local.nbparti }}</td>
@@ -32,18 +36,42 @@
                 <td>{{ evenement_local.lieu }}</td>
                 <td>{{ evenement_local.description }}</td>
                 <td>{{ evenement_local.nbplace }}</td>
+                <td> <img src="{{ asset('uploads/evenement/' ~ evenement_local.photo) }}" width="100" height="100" alt="photo"></td>
                 <td>
-                    <a href="{{ path('evenement_local_show', {'id': evenement_local.id}) }}">show</a>
-                    <a href="{{ path('evenement_local_edit', {'id': evenement_local.id}) }}">edit</a>
+                    <a href="{{ path('evenement_local_show', {'id': evenement_local.id}) }}" class="btn btn-outline-primary" role="button" data-bs-toggle="button">show</a>
+                    <a href="{{ path('evenement_local_edit', {'id': evenement_local.id}) }}" class="btn btn-outline-primary" role="button" data-bs-toggle="button">edit</a>
+
                 </td>
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="10">no records found</td>
             </tr>
         {% endfor %}
+            <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Date</th>
+                <th>Nbparti</th>
+                <th>Tarif</th>
+                <th>Lieu</th>
+                <th>Description</th>
+                <th>Nbplace</th>
+                <th>photo</th>
+                <th>actions</th>
+            </tr>
+            </tfoot>
         </tbody>
-    </table>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
 
-    <a href="{{ path('evenement_local_new') }}">Create new</a>
+
+
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="button" ><a href="{{ path('evenement_local_new') }}">Créer Un Evenement</a></button>
+
 {% endblock %}
+

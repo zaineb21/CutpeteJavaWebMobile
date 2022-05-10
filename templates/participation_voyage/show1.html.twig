@@ -1,0 +1,20 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}ParticipationVoyage{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row pt-5">
+        <div class="col-lg-8">
+            <div class="d-flex flex-column text-left mb-4">
+                <h1 class="text-secondary mb-3">{{ participation_voyage.paysVoyage }}</h1>
+            </div>
+            <div class="mb-5">
+                <img class="img-fluid w-100 mb-4" src="{{ asset('/uploads/voyage/voyage-avec-animal-de-compagnie.jpg')}}" alt="Image">
+                <p>Date : {{ participation_voyage.dateVoyage ? participation_voyage.dateVoyage|date('Y-m-d') : '' }}</p>
+            </div>
+            <a href="{{ path('participation_voyage_annuler', {'id': participation_voyage.id}) }}" class="btn btn-outline-primary m-1">Annuler Votre Participation</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
+    <title>Admin | CUTPETE</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -30,12 +30,11 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a class="nav-link" href="/evenement/local/">Evenement</a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" href="/reservation/">Reservation</a>
-            </li>
+
             <li class="nav-item d-none d-sm-inline-block">
                 <a class="nav-link" href="/voyage/organise/">Voyage</a>
             </li>
+
         </ul>
 
         <!-- Right navbar links -->
@@ -48,7 +47,7 @@
         <!-- Brand Logo -->
         <a href="index3.html" class="brand-link">
             <img src="{{ asset('BackTemplate/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">Admin: Aziz Tebessi</span>
         </a>
 
         <!-- Sidebar -->
@@ -76,34 +75,47 @@
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Starter Pages
+                                Pages
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link active">
+                                <a href="/evenement/local/" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Active Page</p>
+                                    <p>Les Evenements Locals</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="/voyage/organise/" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Inactive Page</p>
+                                    <p>Les Voyages Organisés</p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="/utilisateur" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>utilisateur</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/participation/evenement" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>participation evenement</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/participation/voyage" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>participation voyage</p>
+                                </a>
+                            </li>
+
+
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Simple Link
-                                <span class="right badge badge-danger">New</span>
-                            </p>
-                        </a>
-                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -118,13 +130,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Starter Page</h1>
+                        <h1 class="m-0">CUTPETE</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
-                        </ol>
+
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->

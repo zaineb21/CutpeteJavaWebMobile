@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Utilisateur;
 use App\Entity\VoyageOrganise;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,14 +13,15 @@ class VoyageOrganiseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('idvoy')
+
             ->add('pays')
             ->add('date')
             ->add('nbjours')
             ->add('programme')
-            ->add('tarif')
             ->add('nbanimal')
+
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

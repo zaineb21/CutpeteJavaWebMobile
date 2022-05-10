@@ -3,31 +3,70 @@
 {% block title %}ParticipationEvenement index{% endblock %}
 
 {% block body %}
-    <h1>ParticipationEvenement index</h1>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Les Evenements Locals</h3>
+        </div>
 
-    <table class="table">
-        <thead>
+        <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead>
             <tr>
                 <th>Id</th>
+                <th>IdUser</th>
+                <th>IdEvent</th>
+                <th>NomUser</th>
+                <th>NomEvent</th>
+                <th>DateEvent</th>
+                <th>PhotoEvent</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
+
         {% for participation_evenement in participation_evenements %}
-            <tr>
+            <tr class="gradeX">
                 <td>{{ participation_evenement.id }}</td>
+                <td>{{ participation_evenement.idUser }}</td>
+                <td>{{ participation_evenement.idEvent }}</td>
+                <td>{{ participation_evenement.nomUser }}</td>
+                <td>{{ participation_evenement.nomEvent }}</td>
+                <td>{{ participation_evenement.dateEvent ? participation_evenement.dateEvent|date('Y-m-d') : '' }}</td>
+                <td> <img src="{{ asset('uploads/evenement/' ~ participation_evenement.photoEvent) }}" width="100" height="100" alt="photo"></td>
                 <td>
-                    <a href="{{ path('participation_evenement_show', {'id': participation_evenement.id}) }}">show</a>
-                    <a href="{{ path('participation_evenement_edit', {'id': participation_evenement.id}) }}">edit</a>
+                    <a href="{{ path('participation_evenement_show', {'id': participation_evenement.id}) }}" class="btn btn-outline-primary" role="button" data-bs-toggle="button">show</a>
+                    <a href="{{ path('participation_evenement_edit', {'id': participation_evenement.id}) }}" class="btn btn-outline-primary" role="button" data-bs-toggle="button">edit</a>
                 </td>
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="2">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+                <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>IdUser</th>
+                    <th>IdEvent</th>
+                    <th>NomUser</th>
+                    <th>NomEvent</th>
+                    <th>DateEvent</th>
+                    <th>PhotoEvent</th>
+                    <th>actions</th>
+                </tr>
+                </tfoot>
 
-    <a href="{{ path('participation_evenement_new') }}">Create new</a>
+        </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- page end-->
+</div>
+    </section>
+    <!-- /wrapper -->
+</section>
+
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="button"><a  href="{{ path('participation_evenement_new') }}">Create new</a></button>
+
 {% endblock %}

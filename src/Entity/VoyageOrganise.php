@@ -3,7 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\VoyageOrganiseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=VoyageOrganiseRepository::class)
@@ -17,56 +21,68 @@ class VoyageOrganise
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $idvoy;
+
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="le champs est vide")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $pays;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThan("+24 hours")
      */
     private $date;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="le champs est vide")
      */
     private $nbjours;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="le champs est vide")
      */
     private $programme;
 
     /**
      * @ORM\Column(type="float")
+     *
      */
     private $tarif;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="le champs est vide")
      */
     private $nbanimal;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbjrest;
+
+
+
+
+
+
+
+
+
+
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdvoy(): ?int
-    {
-        return $this->idvoy;
-    }
-
-    public function setIdvoy(int $idvoy): self
-    {
-        $this->idvoy = $idvoy;
-
-        return $this;
     }
 
     public function getPays(): ?string
@@ -140,4 +156,30 @@ class VoyageOrganise
 
         return $this;
     }
+    public function calcultarif(int $nbj , int $nbanim):float{
+         $jour = 20;
+        $animal = 50;
+        $tarif = ($nbj*$jour) + ($nbanim*$animal);
+
+        return $tarif;}
+
+    public function getNbjrest(): ?int
+    {
+        return $this->nbjrest;
+    }
+
+    public function setNbjrest(int $nbjrest): self
+    {
+        $this->nbjrest = $nbjrest;
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
 }

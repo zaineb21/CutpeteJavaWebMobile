@@ -3,47 +3,37 @@
 {% block title %}EvenementLocal index{% endblock %}
 
 {% block body %}
-    <h1>EvenementLocal index</h1>
+    <div class="container pt-5">
+        <div class="d-flex flex-column text-center mb-5 pt-5">
+            <h1 class="display-4 m-0"><span class="text-primary">Nos </span>evenements</h1>
+        </div>
+        <div class="row pb-3">
+            {% for evenement_local in evenement_locals %}
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 mb-2">
+                    <img class="card-img-top" src="{{ asset('/uploads/evenement/' ~ evenement_local.photo)}}" alt="">
+                    <div class="card-body bg-light p-4">
+                        <h4 class="card-title text-truncate">{{ evenement_local.nom }}</h4>
+                        <!--  <div class="d-flex mb-3">
+                                <small class="mr-2"><i class="fa fa-user text-muted"></i> Admin</small>
+                                <small class="mr-2"><i class="fa fa-folder text-muted"></i> Web Design</small>
+                                <small class="mr-2"><i class="fa fa-comments text-muted"></i> 15</small>
+                            </div> -->
+                        <p>{{ evenement_local.description }}</p>
+                        <a class="font-weight-bold" href="{{ path('evenement_local_show1', {'id': evenement_local.id}) }}">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <tr>
+                    <td colspan="10">no records found</td>
+                </tr>
+            {% endfor %}
+            <div class="navigation">
+                {{ knp_pagination_render(evenement_locals) }}
+            </div>
+        </div>
+    </div>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>IdEve</th>
-            <th>Nom</th>
-            <th>Date</th>
-            <th>Nbparti</th>
-            <th>Tarif</th>
-            <th>Lieu</th>
-            <th>Description</th>
-            <th>Nbplace</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for evenement_local in evenement_locals %}
-            <tr>
-                <td>{{ evenement_local.id }}</td>
-                <td>{{ evenement_local.idEve }}</td>
-                <td>{{ evenement_local.nom }}</td>
-                <td>{{ evenement_local.date ? evenement_local.date|date('Y-m-d') : '' }}</td>
-                <td>{{ evenement_local.nbparti }}</td>
-                <td>{{ evenement_local.tarif }}</td>
-                <td>{{ evenement_local.lieu }}</td>
-                <td>{{ evenement_local.description }}</td>
-                <td>{{ evenement_local.nbplace }}</td>
-                <td>
-                    <a href="{{ path('evenement_local_show', {'id': evenement_local.id}) }}">show</a>
-                    <a href="{{ path('evenement_local_edit', {'id': evenement_local.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('evenement_local_new') }}">Create new</a>
 {% endblock %}

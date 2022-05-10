@@ -3,26 +3,32 @@
 {% block title %}ParticipationVoyage index{% endblock %}
 
 {% block body %}
-    <h1>ParticipationVoyage index</h1>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Les Voyages Organisés</h3>
+    </div>
 
-    <table class="table">
-        <thead>
+    <div class="card-body">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Id_user</th>
                 <th>Id_voyage</th>
-                <th>NomUser</th>
-                <th>PrenomUser</th>
-                <th>DateVoyage</th>
-                <th>PaysVoyage</th>
-                <th>TarifVoyage</th>
-                <th>NbanimalVoyage</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date</th>
+                <th>Pays</th>
+                <th>Tarif</th>
+                <th>Nbanimal</th>
+                <th>mail</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for participation_voyage in participation_voyages %}
-            <tr>
+            <tr class="gradeX">
+
                 <td>{{ participation_voyage.id }}</td>
                 <td>{{ participation_voyage.idUser }}</td>
                 <td>{{ participation_voyage.idVoyage }}</td>
@@ -32,9 +38,10 @@
                 <td>{{ participation_voyage.paysVoyage }}</td>
                 <td>{{ participation_voyage.tarifVoyage }}</td>
                 <td>{{ participation_voyage.nbanimalVoyage }}</td>
+                <td>{{ participation_voyage.mailUser }}</td>
                 <td>
-                    <a href="{{ path('participation_voyage_show', {'id': participation_voyage.id}) }}">show</a>
-                    <a href="{{ path('participation_voyage_edit', {'id': participation_voyage.id}) }}">edit</a>
+                    <a href="{{ path('participation_voyage_show', {'id': participation_voyage.id}) }}"class="btn btn-outline-primary" role="button" data-bs-toggle="button">show</a>
+                    <a href="{{ path('participation_voyage_edit', {'id': participation_voyage.id}) }}"class="btn btn-outline-primary" role="button" data-bs-toggle="button">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -42,8 +49,30 @@
                 <td colspan="10">no records found</td>
             </tr>
         {% endfor %}
+            <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Id_user</th>
+                <th>Id_voyage</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date</th>
+                <th>Pays</th>
+                <th>Tarif</th>
+                <th>Nbanimal</th>
+                <th>mail</th>
+                <th>actions</th>
+            </tr>
+            </tfoot>
         </tbody>
     </table>
+    </div>
+</div>
+    <!-- page end-->
+    </div>
+    </section>
+    <!-- /wrapper -->
+    </section>
 
-    <a href="{{ path('participation_voyage_new') }}">Create new</a>
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="button"><a href="{{ path('participation_voyage_new') }}">Create new</a></button>
 {% endblock %}

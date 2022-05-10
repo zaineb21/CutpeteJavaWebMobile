@@ -3,19 +3,23 @@
 {% block title %}VoyageOrganise index{% endblock %}
 
 {% block body %}
-    <h1>VoyageOrganise index</h1>
+<div class="card">
+<div class="card-header">
+    <h3 class="card-title">Les Voyages Organisés</h3>
+</div>
 
-    <table class="table">
+<div class="card-body">
+    <table id="example2" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Idvoy</th>
                 <th>Pays</th>
                 <th>Date</th>
                 <th>Nbjours</th>
                 <th>Programme</th>
                 <th>Tarif</th>
                 <th>Nbanimal</th>
+                <th>Nb jours restants</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,16 +27,16 @@
         {% for voyage_organise in voyage_organises %}
             <tr>
                 <td>{{ voyage_organise.id }}</td>
-                <td>{{ voyage_organise.idvoy }}</td>
                 <td>{{ voyage_organise.pays }}</td>
                 <td>{{ voyage_organise.date ? voyage_organise.date|date('Y-m-d') : '' }}</td>
                 <td>{{ voyage_organise.nbjours }}</td>
                 <td>{{ voyage_organise.programme }}</td>
                 <td>{{ voyage_organise.tarif }}</td>
                 <td>{{ voyage_organise.nbanimal }}</td>
+                <td>{{ voyage_organise.nbjrest }}</td>
                 <td>
-                    <a href="{{ path('voyage_organise_show', {'id': voyage_organise.id}) }}">show</a>
-                    <a href="{{ path('voyage_organise_edit', {'id': voyage_organise.id}) }}">edit</a>
+                    <a href="{{ path('voyage_organise_show', {'id': voyage_organise.id}) }}" class="btn btn-outline-primary" role="button" data-bs-toggle="button">show</a>
+                    <a href="{{ path('voyage_organise_edit', {'id': voyage_organise.id}) }}" class="btn btn-outline-primary" role="button" data-bs-toggle="button">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -40,8 +44,27 @@
                 <td colspan="9">no records found</td>
             </tr>
         {% endfor %}
+        <tfoot>
+        <tr>
+            <th>Id</th>
+            <th>Pays</th>
+            <th>Date</th>
+            <th>Nbjours</th>
+            <th>Programme</th>
+            <th>Tarif</th>
+            <th>Nbanimal</th>
+            <th>actions</th>
+        </tr>
+        </tfoot>
         </tbody>
     </table>
+</div>
+</div>
+    <!-- page end-->
+    </div>
+    </section>
+    <!-- /wrapper -->
+    </section>
 
-    <a href="{{ path('voyage_organise_new') }}">Create new</a>
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="button"> <a href="{{ path('voyage_organise_new') }}">Create Voyage</a></button>
 {% endblock %}

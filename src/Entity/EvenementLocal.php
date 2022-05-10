@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\EvenementLocalRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EvenementLocalRepository::class)
@@ -17,18 +20,23 @@ class EvenementLocal
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $idEve;
+
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="le champs est vide")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThan("+24 hours")
      */
     private $date;
 
@@ -44,11 +52,13 @@ class EvenementLocal
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="le champs est vide")
      */
     private $lieu;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="le champs est vide")
      */
     private $description;
 
@@ -57,22 +67,39 @@ class EvenementLocal
      */
     private $nbplace;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $photo;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbjoursrestant;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbplacerest;
+
+
+
+
+
+
+    public function getImagePath()
+    {
+        return '/public/uploads/evenement/'.$this->getPhoto();
+    }
+
+
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdEve(): ?int
-    {
-        return $this->idEve;
-    }
 
-    public function setIdEve(int $idEve): self
-    {
-        $this->idEve = $idEve;
-
-        return $this;
-    }
 
     public function getNom(): ?string
     {
@@ -157,4 +184,43 @@ class EvenementLocal
 
         return $this;
     }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getNbjoursrestant(): ?int
+    {
+        return $this->nbjoursrestant;
+    }
+
+    public function setNbjoursrestant(int $nbjoursrestant): self
+    {
+        $this->nbjoursrestant = $nbjoursrestant;
+
+        return $this;
+    }
+
+    public function getNbplacerest(): ?int
+    {
+        return $this->nbplacerest;
+    }
+
+    public function setNbplacerest(int $nbplacerest): self
+    {
+        $this->nbplacerest = $nbplacerest;
+
+        return $this;
+    }
+
+
+
 }

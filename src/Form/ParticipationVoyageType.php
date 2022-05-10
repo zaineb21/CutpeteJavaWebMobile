@@ -16,6 +16,7 @@ class ParticipationVoyageType extends AbstractType
             ->add('id_voyage')
             ->add('nomUser')
             ->add('prenomUser')
+            ->add('mailUser')
             ->add('dateVoyage')
             ->add('paysVoyage')
             ->add('tarifVoyage')

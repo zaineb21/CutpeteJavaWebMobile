@@ -35,14 +35,15 @@ class Utilisateur
     private $tel;
 
     /**
-     * @ORM\OneToMany(targetEntity=evenementlocal::class, mappedBy="utilisateur")
+     * @ORM\Column(type="string", length=255)
      */
-    private $evenement;
+    private $mail;
 
-    public function __construct()
-    {
-        $this->evenement = new ArrayCollection();
-    }
+
+
+
+
+
 
     public function getId(): ?int
     {
@@ -85,33 +86,20 @@ class Utilisateur
         return $this;
     }
 
-    /**
-     * @return Collection|evenementlocal[]
-     */
-    public function getEvenement(): Collection
+    public function getMail(): ?string
     {
-        return $this->evenement;
+        return $this->mail;
     }
 
-    public function addEvenement(evenementlocal $evenement): self
+    public function setMail(string $mail): self
     {
-        if (!$this->evenement->contains($evenement)) {
-            $this->evenement[] = $evenement;
-            $evenement->setUtilisateur($this);
-        }
+        $this->mail = $mail;
 
         return $this;
     }
 
-    public function removeEvenement(evenementlocal $evenement): self
-    {
-        if ($this->evenement->removeElement($evenement)) {
-            // set the owning side to null (unless already changed)
-            if ($evenement->getUtilisateur() === $this) {
-                $evenement->setUtilisateur(null);
-            }
-        }
 
-        return $this;
-    }
+
+
+
 }

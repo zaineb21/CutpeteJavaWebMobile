@@ -1,0 +1,35 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}VoyageOrganise{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="container py-5">
+        <div class="row pt-5">
+            <div class="col-lg-8">
+                <div class="d-flex flex-column text-left mb-4">
+                    <h1 class="text-secondary mb-3">{{ voyage_organise.pays }}</h1>
+
+
+                </div>
+
+                <div class="mb-5">
+                    <img class="img-fluid w-100 mb-4" src="{{ asset('/uploads/voyage/voyage-avec-animal-de-compagnie.jpg')}}" alt="Image">
+                    <p>Programme  :  {{ voyage_organise.programme }}</p>
+                    <p class="mr-3" ><i class="fa fa-map-marker"></i> Date : {{ voyage_organise.date ? voyage_organise.date|date('Y-m-d') : '' }}</p>
+                    <p >Nombre De Jours : {{ voyage_organise.nbjours }}</p>
+                    <p class="mr-3" > Tarif :{{ voyage_organise.tarif }}</p>
+                    <p>Nombre De Jours Restants : {{ voyage_organise.nbjrest }}</p>
+
+
+
+
+
+                </div>
+                <a href="{{ path('voyage_res', {'id': voyage_organise.id}) }}" class="btn btn-outline-primary m-1">Reserver</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
