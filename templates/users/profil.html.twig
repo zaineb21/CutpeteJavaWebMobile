@@ -1,0 +1,87 @@
+
+  <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet" />
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+<div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                <div class="navbar-nav mr-auto py-0">
+                    <a href="{{path('home')}}" class="nav-item nav-link active">Home</a>
+                    <a href="#" class="nav-item nav-link">***</a>
+                    <a href="#" class="nav-item nav-link">***</a>
+                    <a href="#" class="nav-item nav-link">***</a>
+                   
+                    <a href="#" class="nav-item nav-link">***</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           
+                       
+                 {% if is_granted("ROLE_ADMIN") %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="button" class="btn btn-danger"><a href="{{path('General')}}" style="color:white" >Admin </a></button>
+                 {% endif %}
+
+            </div>
+        </nav>
+
+<div class="container rounded bg-light mt-5 mb-5">
+    <div class="row">
+    <div class="col-lg-12">
+    <br>
+                    <div class="heading-title" style="margin-left:15% ; color:orange">
+                    <style>
+                       h2.intro::first-letter {
+                       color: #ff0000;
+                       font-size: 150%;
+                                     }  
+                         </style>
+<h2 style="margin-left:35%" class="intro" >Mon Profil</h2> 
+                    </div>
+                </div>
+   
+  
+        <div class="col-md-5 border-right" style="margin-left:37%">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="form-group">
+                   <br> <br>
+                                <center>  <p>Nom : &nbsp;&nbsp;  {{ app.user.username }}</p>  </center>
+                                <center>  <p>Email :  &nbsp;&nbsp;  {{ app.user.email }}</p><br>  </center>
+                                  <br> <br> <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <center>   <button  style="background-color:green" class="btn btn-warning"><a href="{{path('modifier_user_profile')}}" style="color:white; background-color:green " >Modifier Profile </a></button>   </center>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+                           <center>  <button   style="background-color:red"  class="btn btn-warning"><a href="{{path('change_password')}}" style="color:white ; background-color:red"  >Modifier mot de passe</a></button>    </center>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               <center>  <button   style="background-color:orange"  class="btn btn-warning"><a href="{{path('home')}}" style="color:white ; background-color:orange"  >Home</a></button>    </center>
+
+</form>
+
+                              </div>
+                         
+   <br><br>
+
+        </div>
+   
+    </div>               
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

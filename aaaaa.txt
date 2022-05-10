@@ -1,0 +1,10 @@
+mkdir chaindata
+ geth account new --datadir chaindata 
+Geth --datadir=./chaindata/ init genesis.json
+geth --identity "node" --http --http.port "8001" --http.corsdomain "*" --datadir "chaindata" --port "30303" --nodiscover --http.api "db,eth,net,web3,personal,miner,admin" --networkid 1900 --nat "any" --allow-insecure-unlock --mine console 
+eth.accounts
+eth.getBalance("Adresse Publique de compte Blockchain")
+eth.blockNumber
+personal.newAccount("test2")
+ miner.setEtherbase(token compte publique)
+web3.personal.unlockAccount("identifiant")
