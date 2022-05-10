@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ParticipationVoyage index{% endblock %}
+
+{% block body %}
+    <h1>ParticipationVoyage index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_user</th>
+                <th>Id_voyage</th>
+                <th>NomUser</th>
+                <th>PrenomUser</th>
+                <th>DateVoyage</th>
+                <th>PaysVoyage</th>
+                <th>TarifVoyage</th>
+                <th>NbanimalVoyage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participation_voyage in participation_voyages %}
+            <tr>
+                <td>{{ participation_voyage.id }}</td>
+                <td>{{ participation_voyage.idUser }}</td>
+                <td>{{ participation_voyage.idVoyage }}</td>
+                <td>{{ participation_voyage.nomUser }}</td>
+                <td>{{ participation_voyage.prenomUser }}</td>
+                <td>{{ participation_voyage.dateVoyage ? participation_voyage.dateVoyage|date('Y-m-d') : '' }}</td>
+                <td>{{ participation_voyage.paysVoyage }}</td>
+                <td>{{ participation_voyage.tarifVoyage }}</td>
+                <td>{{ participation_voyage.nbanimalVoyage }}</td>
+                <td>
+                    <a href="{{ path('participation_voyage_show', {'id': participation_voyage.id}) }}">show</a>
+                    <a href="{{ path('participation_voyage_edit', {'id': participation_voyage.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('participation_voyage_new') }}">Create new</a>
+{% endblock %}

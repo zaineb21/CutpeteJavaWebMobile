@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ParticipationVoyage{% endblock %}
+
+{% block body %}
+    <h1>ParticipationVoyage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ participation_voyage.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_user</th>
+                <td>{{ participation_voyage.idUser }}</td>
+            </tr>
+            <tr>
+                <th>Id_voyage</th>
+                <td>{{ participation_voyage.idVoyage }}</td>
+            </tr>
+            <tr>
+                <th>NomUser</th>
+                <td>{{ participation_voyage.nomUser }}</td>
+            </tr>
+            <tr>
+                <th>PrenomUser</th>
+                <td>{{ participation_voyage.prenomUser }}</td>
+            </tr>
+            <tr>
+                <th>DateVoyage</th>
+                <td>{{ participation_voyage.dateVoyage ? participation_voyage.dateVoyage|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PaysVoyage</th>
+                <td>{{ participation_voyage.paysVoyage }}</td>
+            </tr>
+            <tr>
+                <th>TarifVoyage</th>
+                <td>{{ participation_voyage.tarifVoyage }}</td>
+            </tr>
+            <tr>
+                <th>NbanimalVoyage</th>
+                <td>{{ participation_voyage.nbanimalVoyage }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('participation_voyage_index') }}">back to list</a>
+
+    <a href="{{ path('participation_voyage_edit', {'id': participation_voyage.id}) }}">edit</a>
+
+    {{ include('participation_voyage/_delete_form.html.twig') }}
+{% endblock %}
