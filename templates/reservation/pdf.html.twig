@@ -1,0 +1,22 @@
+
+
+{% block title %}Reservation Chez Cutpete{% endblock %}
+
+{% block body %}
+
+    <div class="container py-5">
+        <div class="row pt-5">
+            <div class="col-lg-8">
+
+                <div class="mb-5">
+                    <img  src="/public/uploads/download.png" alt="Image">
+                    <p class="mr-3" > Nom : {{ reservation.nom }}</p>
+                    <p class="mr-3" > Prenom :{{ reservation.prenom }}</p>
+                    <p class="mr-3" > Tarif :{{ reservation.tarif }}</p>
+                    <p>votre Reservation est validée</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

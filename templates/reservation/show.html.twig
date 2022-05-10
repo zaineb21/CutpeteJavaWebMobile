@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+    <h1>Reservation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation.id }}</td>
+            </tr>
+           
+            
+            <tr>
+                <th>Nom</th>
+                <td>{{ reservation.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ reservation.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Date_arrive</th>
+                <td>{{ reservation.dateArrive ? reservation.dateArrive|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_sortie</th>
+                <td>{{ reservation.dateSortie ? reservation.dateSortie|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nbanimal</th>
+                <td>{{ reservation.nbanimal }}</td>
+            </tr>
+            <tr>
+                <th>Pension</th>
+                <td>{{ reservation.pension }}</td>
+            </tr>
+            <tr>
+                <th>Dresseur</th>
+                <td>{{ reservation.dresseur }}</td>
+            </tr>
+            <tr>
+                <th>Veterinaire</th>
+                <td>{{ reservation.veterinaire }}</td>
+            </tr>
+            <tr>
+                <th>Tarif</th>
+                <td>{{ reservation.tarif }}</td>
+            </tr>
+            <tr>
+                <th>Numtel</th>
+                <td>{{ reservation.numtel }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ reservation.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('reservation_index') }}">back to list</a>
+
+    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+
+    {{ include('reservation/_delete_form.html.twig') }}
+{% endblock %}

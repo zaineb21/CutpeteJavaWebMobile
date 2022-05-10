@@ -1,0 +1,46 @@
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <h1>Reservation non actives</h1>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Date_arrive</th>
+                <th scope="col">Date_sortie</th>
+                <th scope="col">Nbanimal</th>
+                <th scope="col">Tarif</th>
+                <th scope="col">Numtel</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations1 %}
+            <tr>
+                <td>{{ reservation.nom }}</td>
+                <td>{{ reservation.prenom }}</td>
+                <td>{{ reservation.dateArrive ? reservation.dateArrive|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.dateSortie ? reservation.dateSortie|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.nbanimal }}</td>
+                <td>{{ reservation.tarif }}</td>
+                <td>{{ reservation.numtel }}</td>
+                
+                
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+       
+        </tbody>
+    </table>
+ <div class="navigation">
+                {{ knp_pagination_render(reservations1) }}
+            </div>
+    
+{% endblock %}
