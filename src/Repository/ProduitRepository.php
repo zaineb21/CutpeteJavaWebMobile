@@ -56,6 +56,7 @@ class ProduitRepository extends ServiceEntityRepository
             ->setParameter('str', '%'.$str.'%')
             ->getResult();
     }
+
     public function rechercheAvance($str) {
         return $this->getEntityManager()
             ->createQuery(

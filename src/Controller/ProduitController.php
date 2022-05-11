@@ -35,7 +35,7 @@ class ProduitController extends AbstractController
             // Define the page parameter
             $request->query->getInt('page', 1),
             // Items per page
-            5
+        3
         );
 
         return $this->render('produit/index.html.twig', [
@@ -45,11 +45,19 @@ class ProduitController extends AbstractController
     /**
      * @Route("/FrontProd", name="app_p_indexF", methods={"GET"})
      */
-    public function indexF(EntityManagerInterface $entityManager): Response
+    public function indexF(EntityManagerInterface $entityManager,PaginatorInterface $paginator,Request $request): Response
     {
         $produits = $entityManager
             ->getRepository(Produit::class)
             ->findAll();
+        $produits = $paginator->paginate(
+        // Doctrine Query, not results
+            $produits,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            5
+        );
 
         return $this->render('produit/produitFront.html.twig', [
             'produits' => $produits,
@@ -130,6 +138,42 @@ class ProduitController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/search/" ,name="ajax_search1")
+
+     */
+    public function searchAction(ProduitRepository $ProduitRepository, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        $produit = $ProduitRepository->findEntitiesByString($requestString);
+
+        if (!$produit) {
+            $result['produit']['error'] = "Post Not found :( ";
+        } else {
+            $result['produit'] = $this->getRealEntities($produit);
+        }
+        return new Response(json_encode($result));
+    }
+    public function getRealEntities($produit)
+    {
+        foreach ($produit as $produit) {
+            $realEntities[$produit->getIdProduit()] = [$produit->getImage(), $produit->getLibelle()];
+        }
+        return $realEntities;
+    }
+
+    /**
+     * @Route("/stats", name="note_stat", methods={"GET"})
+
+     */
+    public function board( ProduitRepository $produitRepository): Response
+    {
+        return $this->render('produit/stat.html.twig', [
+            'produits' => $produitRepository->findAll(),
+        ]);
+    }
+
 
     /**
      * @Route("/{idProduit}", name="app_produit_show", methods={"GET"})
@@ -140,6 +184,20 @@ class ProduitController extends AbstractController
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
         ]);
+    }
+    /**
+     * @Route("/afficher/{idProduit}", name="app_produit_showF", methods={"GET"})
+     */
+    public function showF(Produit $produit,FlashyNotifier $flashy): Response
+    {
+        $flashy->success('voici le produit');
+        return $this->render('produit/showF.html.twig', [
+            'produit' => $produit,
+        ]);
+    }
+    public function notif(Produit $produit,FlashyNotifier $flashy)
+    {
+
     }
 
     /**
@@ -176,39 +234,4 @@ class ProduitController extends AbstractController
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    /**
-     * @Route("/search/" ,name="ajax_search1")
-
-     */
-    public function searchAction(ProduitRepository $ProduitRepository, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $requestString = $request->get('q');
-        $produit = $ProduitRepository->findEntitiesByString($requestString);
-
-        if (!$produit) {
-            $result['produit']['error'] = "Post Not found :( ";
-        } else {
-            $result['produit'] = $this->getRealEntities($produit);
-        }
-        return new Response(json_encode($result));
-    }
-    public function getRealEntities($produit)
-    {
-        foreach ($produit as $produit) {
-            $realEntities[$produit->getIdProduit()] = [$produit->getImage(), $produit->getLibelle()];
-        }
-        return $realEntities;
-    }
-
-        /**
-         * @Route("/stats", name="note_stat", methods={"GET"})
-
-         */
-        public function board( ProduitRepository $produitRepository): Response
-    {
-        return $this->render('produit/stat.html.twig', [
-            'produits'=> $produitRepository->findAll(),
-        ]);
-    }
 }

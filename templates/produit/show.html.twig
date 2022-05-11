@@ -3,6 +3,26 @@
 {% block title %}Produit{% endblock %}
 
 {% block body %}
+    <style>
+        .img{
+            width: 60px;
+            height: 60px;
+            background-size: cover;
+            display: block;
+            border-radius: 100px;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 100px;
+        }
+        th {
+            text-align: inherit;
+            text-align: -webkit-match-parent;
+        }
+        th {
+            border-color: inherit;
+            border-style: solid;
+            border-width: 0;
+        }
+    </style>
     <h1>Produit</h1>
 
     <table class="table">
@@ -39,9 +59,10 @@
                 <th>Note</th>
                 <td>{{ produit.note }}</td>
             </tr>
+
             <tr>
                 <th>Image</th>
-                <td>{{ produit.image }}</td>
+                <td> <img  src="{{ asset('img/')}}{{ produit.image }}" alt="" class="img"></td>
             </tr>
         </tbody>
     </table>

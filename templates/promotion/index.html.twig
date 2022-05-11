@@ -3,8 +3,27 @@
 {% block title %}Promotion index{% endblock %}
 
 {% block body %}
-
-    <h1>Promotion index</h1>
+<style>
+    .img{
+        width: 60px;
+        height: 60px;
+        background-size: cover;
+        display: block;
+        border-radius: 100px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+    }
+    th {
+        text-align: inherit;
+        text-align: -webkit-match-parent;
+    }
+    th {
+        border-color: inherit;
+        border-style: solid;
+        border-width: 0;
+    }
+</style>
+    <h1>Promotion </h1>
 <section class="ftco-section">
 
     <div class="container">
@@ -15,7 +34,7 @@
                     <div class="container">
                         <div class="sidebar-search" >
                             <div class="input-group custom-search-form">
-                                <input    type="text" id="search" class="form-control widget_input" placeholder="Chercher..." style="width: 900px;background: white">
+                                <input    type="text" id="search" class="form-control widget_input" placeholder="Chercher..." style="width: 90px;background: white">
                             </div>
                             <br>
                             <!-- /input-group -->
@@ -33,34 +52,40 @@
     <table class="table">
         <thead>
             <tr>
+                <th></th>
                 <th>IdPromotion</th>
                 <th>LibellePromotion</th>
                 <th>Pourcentage</th>
                 <th>DateDebutPromotion</th>
                 <th>DateFinPourcentage</th>
                 <th>Description</th>
+                <th>Prix apres réduction</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
+        {% for produit in produits %}
         {% for promotion in promotions %}
+            {% if promotion.idProduit==produit %}
             <tr>
+                <td> <img  src="{{ asset('img/')}}{{ produit.image }}" alt="" class="img"></td>
                 <td>{{ promotion.idPromotion }}</td>
                 <td>{{ promotion.libellePromotion }}</td>
                 <td>{{ promotion.pourcentage }}</td>
                 <td>{{ promotion.dateDebutPromotion ? promotion.dateDebutPromotion|date('Y-m-d') : '' }}</td>
                 <td>{{ promotion.dateFinPourcentage ? promotion.dateFinPourcentage|date('Y-m-d') : '' }}</td>
                 <td>{{ promotion.description }}</td>
+                <td>{{ produit.prix - (promotion.pourcentage* produit.prix)/100}}</td>
                 <td>
                     <a href="{{ path('app_promotion_show', {'idPromotion': promotion.idPromotion}) }}">show</a>
                     <a href="{{ path('app_promotion_edit', {'idPromotion': promotion.idPromotion}) }}">edit</a>
                 </td>
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
+            {% endif%}
         {% endfor %}
+        {% endfor %}
+
+
         </tbody>
     </table>
             <!-- jQuery is necessary -->

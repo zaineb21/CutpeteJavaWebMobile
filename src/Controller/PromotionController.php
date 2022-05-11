@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
 use App\Entity\Promotion;
 use App\Form\PromotionType;
 use App\Repository\PrommotionRepository;
@@ -23,6 +24,9 @@ class PromotionController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager,PaginatorInterface $paginator,Request $request): Response
     {
+        $produits=$entityManager
+            ->getRepository(Produit::class)
+            ->findAll();
         $allpromotions = $entityManager
             ->getRepository(Promotion::class)
             ->findAll();
@@ -37,6 +41,7 @@ class PromotionController extends AbstractController
 
         return $this->render('promotion/index.html.twig', [
             'promotions' => $promotions,
+            'produits'=>$produits,
         ]);
     }
     /**
@@ -84,6 +89,7 @@ class PromotionController extends AbstractController
         $flashy->success('Détails de la promotion');
         return $this->render('promotion/show.html.twig', [
             'promotion' => $promotion,
+
         ]);
     }
 

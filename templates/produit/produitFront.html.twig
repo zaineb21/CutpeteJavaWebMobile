@@ -46,18 +46,19 @@
                 <td>{{ produit.quantite }}</td>
                 <td>{{ produit.description }}</td>
                 <td>{{ produit.note }}</td>
-                <div>
+
                     <td> <img  src="{{ asset('img/')}}{{ produit.image }}" alt="" class="img"></td>
                 <td>
-                    <a href="{{ path('app_produit_show', {'idProduit': produit.idProduit}) }}">show</a>
+                    <a href="{{ path('app_produit_showF', {'idProduit': produit.idProduit}) }}">show</a></td>
+                    <div class="navigation">
+                        {{ knp_pagination_render(produits) }}
+                    </div>
 
-
-                </td>
-            </tr>
         {% else %}
             <tr>
                 <td colspan="10">no records found</td>
             </tr>
+
         {% endfor %}
         </tbody>
     </table>
