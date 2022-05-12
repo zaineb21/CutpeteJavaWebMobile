@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="cryftyMobile">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cryftyMobile/JavaSE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cryftyMobile/CodeNameOneBuildClient.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
